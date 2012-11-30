@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB7C16DD1662A588001A0685 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16DC1662A588001A0685 /* UIKit.framework */; };
+		FB7C16DF1662A588001A0685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16DE1662A588001A0685 /* Foundation.framework */; };
+		FB7C16E11662A588001A0685 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16E01662A588001A0685 /* CoreGraphics.framework */; };
+		FB7C16E71662A588001A0685 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB7C16E51662A588001A0685 /* InfoPlist.strings */; };
+		FB7C16E91662A588001A0685 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7C16E81662A588001A0685 /* main.m */; };
+		FB7C16ED1662A588001A0685 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7C16EC1662A588001A0685 /* AppDelegate.m */; };
+		FB7C16EF1662A588001A0685 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7C16EE1662A588001A0685 /* Default.png */; };
+		FB7C16F11662A588001A0685 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7C16F01662A588001A0685 /* Default@2x.png */; };
+		FB7C16F31662A588001A0685 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7C16F21662A588001A0685 /* Default-568h@2x.png */; };
+		FB7C16F61662A588001A0685 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB7C16F41662A588001A0685 /* MainStoryboard.storyboard */; };
+		FB7C16F91662A588001A0685 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7C16F81662A588001A0685 /* ViewController.m */; };
+		FB7C17001662A5B6001A0685 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16FF1662A5B6001A0685 /* Security.framework */; };
+		FB7C17081662A992001A0685 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7C17071662A992001A0685 /* Connection.m */; };
+		FB7C170A1662ACBC001A0685 /* www.example.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = FB7C17091662ACBC001A0685 /* www.example.com.cer */; };
+		FB7C170E1662B486001A0685 /* www.google.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = FB7C170D1662B486001A0685 /* www.google.com.cer */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FB7C16D81662A588001A0685 /* SelfCert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfCert.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB7C16DC1662A588001A0685 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FB7C16DE1662A588001A0685 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FB7C16E01662A588001A0685 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FB7C16E41662A588001A0685 /* SelfCert-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SelfCert-Info.plist"; sourceTree = "<group>"; };
+		FB7C16E61662A588001A0685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FB7C16E81662A588001A0685 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FB7C16EA1662A588001A0685 /* SelfCert-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SelfCert-Prefix.pch"; sourceTree = "<group>"; };
+		FB7C16EB1662A588001A0685 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FB7C16EC1662A588001A0685 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FB7C16EE1662A588001A0685 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		FB7C16F01662A588001A0685 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		FB7C16F21662A588001A0685 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		FB7C16F51662A588001A0685 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		FB7C16F71662A588001A0685 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FB7C16F81662A588001A0685 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FB7C16FF1662A5B6001A0685 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FB7C17061662A992001A0685 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		FB7C17071662A992001A0685 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		FB7C17091662ACBC001A0685 /* www.example.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = www.example.com.cer; sourceTree = "<group>"; };
+		FB7C170D1662B486001A0685 /* www.google.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = www.google.com.cer; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FB7C16D51662A588001A0685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB7C17001662A5B6001A0685 /* Security.framework in Frameworks */,
+				FB7C16DD1662A588001A0685 /* UIKit.framework in Frameworks */,
+				FB7C16DF1662A588001A0685 /* Foundation.framework in Frameworks */,
+				FB7C16E11662A588001A0685 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FB7C16CD1662A588001A0685 = {
+			isa = PBXGroup;
+			children = (
+				FB7C16FF1662A5B6001A0685 /* Security.framework */,
+				FB7C16E21662A588001A0685 /* SelfCert */,
+				FB7C16DB1662A588001A0685 /* Frameworks */,
+				FB7C16D91662A588001A0685 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FB7C16D91662A588001A0685 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB7C16D81662A588001A0685 /* SelfCert.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FB7C16DB1662A588001A0685 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB7C16DC1662A588001A0685 /* UIKit.framework */,
+				FB7C16DE1662A588001A0685 /* Foundation.framework */,
+				FB7C16E01662A588001A0685 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB7C16E21662A588001A0685 /* SelfCert */ = {
+			isa = PBXGroup;
+			children = (
+				FB7C17061662A992001A0685 /* Connection.h */,
+				FB7C17071662A992001A0685 /* Connection.m */,
+				FB7C16EB1662A588001A0685 /* AppDelegate.h */,
+				FB7C16EC1662A588001A0685 /* AppDelegate.m */,
+				FB7C16F41662A588001A0685 /* MainStoryboard.storyboard */,
+				FB7C16F71662A588001A0685 /* ViewController.h */,
+				FB7C16F81662A588001A0685 /* ViewController.m */,
+				FB7C16E31662A588001A0685 /* Supporting Files */,
+			);
+			path = SelfCert;
+			sourceTree = "<group>";
+		};
+		FB7C16E31662A588001A0685 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB7C170D1662B486001A0685 /* www.google.com.cer */,
+				FB7C17091662ACBC001A0685 /* www.example.com.cer */,
+				FB7C16E41662A588001A0685 /* SelfCert-Info.plist */,
+				FB7C16E51662A588001A0685 /* InfoPlist.strings */,
+				FB7C16E81662A588001A0685 /* main.m */,
+				FB7C16EA1662A588001A0685 /* SelfCert-Prefix.pch */,
+				FB7C16EE1662A588001A0685 /* Default.png */,
+				FB7C16F01662A588001A0685 /* Default@2x.png */,
+				FB7C16F21662A588001A0685 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FB7C16D71662A588001A0685 /* SelfCert */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB7C16FC1662A588001A0685 /* Build configuration list for PBXNativeTarget "SelfCert" */;
+			buildPhases = (
+				FB7C16D41662A588001A0685 /* Sources */,
+				FB7C16D51662A588001A0685 /* Frameworks */,
+				FB7C16D61662A588001A0685 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SelfCert;
+			productName = SelfCert;
+			productReference = FB7C16D81662A588001A0685 /* SelfCert.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FB7C16CF1662A588001A0685 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Rob Napier";
+			};
+			buildConfigurationList = FB7C16D21662A588001A0685 /* Build configuration list for PBXProject "SelfCert" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FB7C16CD1662A588001A0685;
+			productRefGroup = FB7C16D91662A588001A0685 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FB7C16D71662A588001A0685 /* SelfCert */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FB7C16D61662A588001A0685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB7C16E71662A588001A0685 /* InfoPlist.strings in Resources */,
+				FB7C16EF1662A588001A0685 /* Default.png in Resources */,
+				FB7C16F11662A588001A0685 /* Default@2x.png in Resources */,
+				FB7C16F31662A588001A0685 /* Default-568h@2x.png in Resources */,
+				FB7C16F61662A588001A0685 /* MainStoryboard.storyboard in Resources */,
+				FB7C170A1662ACBC001A0685 /* www.example.com.cer in Resources */,
+				FB7C170E1662B486001A0685 /* www.google.com.cer in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FB7C16D41662A588001A0685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB7C16E91662A588001A0685 /* main.m in Sources */,
+				FB7C16ED1662A588001A0685 /* AppDelegate.m in Sources */,
+				FB7C16F91662A588001A0685 /* ViewController.m in Sources */,
+				FB7C17081662A992001A0685 /* Connection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FB7C16E51662A588001A0685 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB7C16E61662A588001A0685 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FB7C16F41662A588001A0685 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB7C16F51662A588001A0685 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FB7C16FA1662A588001A0685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FB7C16FB1662A588001A0685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FB7C16FD1662A588001A0685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SelfCert/SelfCert-Prefix.pch";
+				INFOPLIST_FILE = "SelfCert/SelfCert-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FB7C16FE1662A588001A0685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SelfCert/SelfCert-Prefix.pch";
+				INFOPLIST_FILE = "SelfCert/SelfCert-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FB7C16D21662A588001A0685 /* Build configuration list for PBXProject "SelfCert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB7C16FA1662A588001A0685 /* Debug */,
+				FB7C16FB1662A588001A0685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB7C16FC1662A588001A0685 /* Build configuration list for PBXNativeTarget "SelfCert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB7C16FD1662A588001A0685 /* Debug */,
+				FB7C16FE1662A588001A0685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FB7C16CF1662A588001A0685 /* Project object */;
+}
