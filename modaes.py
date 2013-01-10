@@ -11,7 +11,11 @@
 # to the ciphertext in transit and can modify the ciphertext before it arrives
 # at the bank.
 #
-# I'm using OpenSSL for convenience. OpenSSL actually has 
+# The lesson here is: when using an unauthenticated mode with AES (such as CBC
+# or CTR) you must use an HMAC to verify that your ciphertext has not been
+# modified in transit. If you are not including an authentication mechanism
+# (such as HMAC), then your use of AES is incorrect and insecure, no matter how
+# strong AES may be.
 #
 
 import subprocess
