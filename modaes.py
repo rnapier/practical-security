@@ -7,16 +7,19 @@
 # and encrypts it with a shared secret known only to her and her bank.
 #
 # Eve only knows that the characters "Bob" will occur at index 12. She wants to
-# change those characters to "Eve" when the message id decrypted. She has access
+# change those characters to "Eve" when the message is decrypted. She has access
 # to the ciphertext in transit and can modify the ciphertext before it arrives
 # at the bank.
 #
 # The lesson here is: when using an unauthenticated mode with AES (such as CBC
 # or CTR) you must use an HMAC to verify that your ciphertext has not been
 # modified in transit. If you are not including an authentication mechanism
-# (such as HMAC), then your use of AES is incorrect and insecure, no matter how
-# strong AES may be.
+# (such as HMAC), then your use of AES is insecure, no matter how strong AES may
+# be.
 #
+# If you want to understand this and many other cryptography issues much better,
+# I highly recommend Dan Boneh's Cryptography I class through Coursera:
+# https://www.coursera.org/course/crypto
 
 import subprocess
 import os
@@ -26,11 +29,18 @@ import os
 # The original message. (Eve knows a little bit about this string.)
 msg = "Amt:$100.To:Bob.From:Alice.Seq:PQ123.Comment:Here's the money I owe you."
 
-# The original key (Totally random and Eve doesn't know it.)
+# The original key shared by Alice and bank
+# Totally random and Eve doesn't know it. 256 random bits, so she's not going to
+# guess it either.
 KEY_SIZE = 32
 key = os.urandom(KEY_SIZE)
 
-# The original IV (This is part of the message, so Eve does know it.)
+# The original IV
+# This is part of the message, so Eve knows it. If you're using a NULL (0) IV,
+# then you've made Eve's job even easier, and you've introduced other security
+# problems that can allow Eve to decrypt part of the message (that a story for
+# another example). Your IV must be random and unique (sepecifically, you should
+# never reuse the same IV and key).
 BLOCK_SIZE = 16
 iv = os.urandom(BLOCK_SIZE)
 
