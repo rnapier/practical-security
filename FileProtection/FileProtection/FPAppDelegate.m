@@ -9,70 +9,73 @@
 #import "FPAppDelegate.h"
 
 
-
-NSString * DocumentsDirectory() {
+NSString *DocumentsDirectory() {
   return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-
 }
 
-void ReadPath(NSString *path, NSString *name) {
-  NSData *data;
-  NSError *error;
-
-  NSLog(@"Reading '%@'", name);
-  data = [NSData dataWithContentsOfFile:path
-                                options:0
-                                  error:&error];
-  if (data)
-  {
-    NSLog(@"Success.");
-  }
-  else{
-    NSLog(@"Failed: %@", error);
-  }
+NSString *PathForName(NSString *name) {
+  return [DocumentsDirectory() stringByAppendingPathComponent:name];
 }
 
 @interface FPAppDelegate ()
-@property (nonatomic, readonly) NSString *completeProtectionPath;
 @property (nonatomic) UIBackgroundTaskIdentifier backgroundTask;
 @end
 
 @implementation FPAppDelegate
 
-- (id)init
+- (void)readFileForName:(NSString *)name shouldSucceed:(BOOL)shouldSucceed
 {
-  self = [super init];
-  if (self) {
-    _completeProtectionPath = [DocumentsDirectory() stringByAppendingPathComponent:@"protected.dat"];
-  }
+  NSData *data;
+  NSError *error;
 
-  return self;
+  NSLog(@"Reading '%@'. Should%@ succeed.", name, shouldSucceed ? @"" : @" not");
+  data = [NSData dataWithContentsOfFile:PathForName(name)
+                                options:0
+                                  error:&error];
+  [self logResult:(data != nil) expectedResult:shouldSucceed];
+}
+
+- (void)logResult:(BOOL)result expectedResult:(BOOL)expected
+{
+  if (result) {
+    NSLog(@"Succeed %@", expected ? @"as expected." : @"AND THIS WAS NOT EXPECTED.");
+  }
+  else {
+    NSLog(@"Failed %@", expected ? @"AND THIS WAS NOT EXPECTED" : @"as expected.");
+  }
 }
 
 // Create a protected file.
-- (void)createProtectedFileAtPath:(NSString *)path
+- (void)createProtectedFileWithOptions:(enum NSDataWritingOptions)options name:(NSString *)name shouldSucceed:(BOOL)shouldSucceed
 {
   NSData *data = [@"This is some protected data" dataUsingEncoding:NSUTF8StringEncoding];
 
-  NSLog(@"Creating 'Complete'");
+  NSLog(@"Creating '%@'. Should%@ succeed.", name, shouldSucceed ? @"" : @" not");
   NSError *error;
-  if ([data writeToFile:path
-                options:NSDataWritingFileProtectionComplete
-                  error:&error])
-  {
-    NSLog(@"Success");
-  }
-  else
-  {
-    NSLog(@"Failed to write: %@", error);
-  }
+  [self logResult:[data writeToFile:PathForName(name)
+                            options:options
+                              error:&error]
+   expectedResult:shouldSucceed];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [self createProtectedFileAtPath:self.completeProtectionPath];
+  [self cleanDocuments];
+  [self createProtectedFileWithOptions:NSDataWritingFileProtectionComplete name:@"complete" shouldSucceed:YES];
+
+  NSLog(@"Lock device now");
 
   return YES;
+}
+
+- (void)cleanDocuments
+{
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:DocumentsDirectory()];
+  for (NSString *path in dirEnum) {
+    NSLog(@"Removing %@", path);
+    [fm removeItemAtPath:[DocumentsDirectory() stringByAppendingPathComponent:path] error:NULL];
+  }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -86,6 +89,14 @@ void ReadPath(NSString *path, NSString *name) {
   NSLog(@"Entering background");
 }
 
+- (void)applicationProtectedDataDidBecomeAvailable:(UIApplication *)application
+{
+  NSLog(@"Upgrading files");
+  NSError *error = nil;
+  [self upgradeFilesInDirectory:DocumentsDirectory() error:&error];
+  [self logResult:(error == nil) expectedResult:YES];
+}
+
 - (void)applicationProtectedDataWillBecomeUnavailable:(UIApplication *)application
 {
   double delayInSeconds = 11.0;
@@ -94,14 +105,29 @@ void ReadPath(NSString *path, NSString *name) {
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (uint64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
     NSLog(@"Reading after encryption");
-    ReadPath(self.completeProtectionPath, @"Complete");
+    [self readFileForName:@"complete" shouldSucceed:NO];
+
+    [self createProtectedFileWithOptions:NSDataWritingFileProtectionComplete name:@"complete-after-encryption" shouldSucceed:NO];
+    [self createProtectedFileWithOptions:NSDataWritingFileProtectionCompleteUnlessOpen name:@"complete-unless-open" shouldSucceed:YES];
 
     [application endBackgroundTask:self.backgroundTask];
     self.backgroundTask = UIBackgroundTaskInvalid;
   });
-  
-  
 }
 
+- (void)upgradeFilesInDirectory:(NSString *)dir
+                          error:(NSError **)error
+{
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:dir];
+  for (NSString *path in dirEnum) {
+    NSDictionary *attrs = [dirEnum fileAttributes];
+    if (![[attrs objectForKey:NSFileProtectionKey] isEqual:NSFileProtectionComplete]) {
+      [fm setAttributes:@{NSFileProtectionKey : NSFileProtectionComplete}
+           ofItemAtPath:[DocumentsDirectory() stringByAppendingPathComponent:path]
+                  error:error];
+    }
+  }
+}
 
 @end
