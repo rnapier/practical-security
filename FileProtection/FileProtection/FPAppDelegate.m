@@ -5,9 +5,13 @@
 //  Created by Rob Napier on 3/9/13.
 //  Copyright (c) 2013 Rob Napier. All rights reserved.
 //
+//  Demonstrates various FileProtection settings
+//  Only meaningful if run on a device that has a PIN lock
+//  Install on device and run under Xcode to see log output.
+//  Lock device when instructed.
+//
 
 #import "FPAppDelegate.h"
-
 
 @interface FPAppDelegate ()
 @property (nonatomic) UIBackgroundTaskIdentifier backgroundTask;
@@ -15,7 +19,8 @@
 
 @implementation FPAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
   /*
    Normally it would be a good idea to call -upgradeFilesInDirectory:error: here, but
