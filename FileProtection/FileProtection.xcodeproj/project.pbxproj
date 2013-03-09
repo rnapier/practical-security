@@ -17,7 +17,6 @@
 		FB518F9916EB94BA00957AF7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB518F9816EB94BA00957AF7 /* Default@2x.png */; };
 		FB518F9B16EB94BA00957AF7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB518F9A16EB94BA00957AF7 /* Default-568h@2x.png */; };
 		FB518F9E16EB94BA00957AF7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB518F9C16EB94BA00957AF7 /* MainStoryboard.storyboard */; };
-		FB518FA116EB94BA00957AF7 /* FPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB518FA016EB94BA00957AF7 /* FPViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,14 +28,12 @@
 		FB518F8E16EB94BA00957AF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FB518F9016EB94BA00957AF7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FB518F9216EB94BA00957AF7 /* FileProtection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FileProtection-Prefix.pch"; sourceTree = "<group>"; };
-		FB518F9316EB94BA00957AF7 /* FPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPAppDelegate.h; sourceTree = "<group>"; };
-		FB518F9416EB94BA00957AF7 /* FPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPAppDelegate.m; sourceTree = "<group>"; };
+		FB518F9316EB94BA00957AF7 /* FPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FPAppDelegate.h; path = FileProtection/FPAppDelegate.h; sourceTree = "<group>"; };
+		FB518F9416EB94BA00957AF7 /* FPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FPAppDelegate.m; path = FileProtection/FPAppDelegate.m; sourceTree = "<group>"; };
 		FB518F9616EB94BA00957AF7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FB518F9816EB94BA00957AF7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		FB518F9A16EB94BA00957AF7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		FB518F9D16EB94BA00957AF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		FB518F9F16EB94BA00957AF7 /* FPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPViewController.h; sourceTree = "<group>"; };
-		FB518FA016EB94BA00957AF7 /* FPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +53,8 @@
 		FB518F7816EB94BA00957AF7 = {
 			isa = PBXGroup;
 			children = (
+				FB518F9316EB94BA00957AF7 /* FPAppDelegate.h */,
+				FB518F9416EB94BA00957AF7 /* FPAppDelegate.m */,
 				FB518F8A16EB94BA00957AF7 /* FileProtection */,
 				FB518F8316EB94BA00957AF7 /* Frameworks */,
 				FB518F8216EB94BA00957AF7 /* Products */,
@@ -83,11 +82,6 @@
 		FB518F8A16EB94BA00957AF7 /* FileProtection */ = {
 			isa = PBXGroup;
 			children = (
-				FB518F9316EB94BA00957AF7 /* FPAppDelegate.h */,
-				FB518F9416EB94BA00957AF7 /* FPAppDelegate.m */,
-				FB518F9C16EB94BA00957AF7 /* MainStoryboard.storyboard */,
-				FB518F9F16EB94BA00957AF7 /* FPViewController.h */,
-				FB518FA016EB94BA00957AF7 /* FPViewController.m */,
 				FB518F8B16EB94BA00957AF7 /* Supporting Files */,
 			);
 			path = FileProtection;
@@ -96,6 +90,7 @@
 		FB518F8B16EB94BA00957AF7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FB518F9C16EB94BA00957AF7 /* MainStoryboard.storyboard */,
 				FB518F8C16EB94BA00957AF7 /* FileProtection-Info.plist */,
 				FB518F8D16EB94BA00957AF7 /* InfoPlist.strings */,
 				FB518F9016EB94BA00957AF7 /* main.m */,
@@ -176,7 +171,6 @@
 			files = (
 				FB518F9116EB94BA00957AF7 /* main.m in Sources */,
 				FB518F9516EB94BA00957AF7 /* FPAppDelegate.m in Sources */,
-				FB518FA116EB94BA00957AF7 /* FPViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +293,7 @@
 				FB518FA616EB94BA00957AF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
