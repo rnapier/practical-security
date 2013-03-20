@@ -81,6 +81,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
                                     name:@"complete-unless-open"
                            shouldSucceed:YES];
 
+    NSLog(@"Unlock device now");
+
     [application endBackgroundTask:self.backgroundTask];
     self.backgroundTask = UIBackgroundTaskInvalid;
   });
@@ -97,24 +99,38 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self logResult:(error == nil) expectedResult:YES];
 }
 
-
-/* 
- Simple implementation of upgrading the file protections to "complete." This 
- implementation upgrades everything in the Documents directory.
+/**
+ Upgrade all the files in the directory to NSFileProtectionComplete
+ Keep going, even if some fail.
+ Returns whether any failed, and provides the last error encountered
  */
-- (void)upgradeFilesInDirectory:(NSString *)dir
-                          error:(NSError **)error
+- (BOOL)upgradeFilesInDirectory:(NSString *)dir error:(NSError **)error
 {
+  BOOL result = YES;
+  NSDictionary *desiredAttributes = @{NSFileProtectionKey : NSFileProtectionComplete};
+
   NSFileManager *fm = [NSFileManager defaultManager];
   NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:dir];
-  for (NSString *path in dirEnum) {
-    NSDictionary *attrs = [dirEnum fileAttributes];
-    if (![[attrs objectForKey:NSFileProtectionKey] isEqual:NSFileProtectionComplete]) {
-      [fm setAttributes:@{NSFileProtectionKey : NSFileProtectionComplete}
-           ofItemAtPath:[DocumentsDirectory() stringByAppendingPathComponent:path]
-                  error:error];
+
+  for (NSString *path in dirEnum)
+  {
+    NSDictionary *attribs = [dirEnum fileAttributes];
+    if (! [attribs[NSFileProtectionKey] isEqual:desiredAttributes[NSFileProtectionKey]])
+    {
+      NSError *lastError;
+      if (! [fm setAttributes:desiredAttributes
+                 ofItemAtPath:[dir stringByAppendingPathComponent:path]
+                        error:&lastError])
+      {
+        result = NO;
+        if (error)
+        {
+          *error = lastError;
+        }
+      }
     }
   }
+  return result;
 }
 
 /**********************************************************************/
