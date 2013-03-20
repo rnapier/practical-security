@@ -1,4 +1,4 @@
-security-blunders
+Practical Security
 =================
 
-Sample Code from Avoiding Security Blunders
+Sample Code from Practical Security
