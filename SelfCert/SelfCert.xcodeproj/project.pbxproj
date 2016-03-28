@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB6692E51CA9727B00E11CCD /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBFDDF101CA86CB600ADA7D4 /* Connection.swift */; };
 		FB7C16DD1662A588001A0685 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16DC1662A588001A0685 /* UIKit.framework */; };
 		FB7C16DF1662A588001A0685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16DE1662A588001A0685 /* Foundation.framework */; };
 		FB7C16E11662A588001A0685 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16E01662A588001A0685 /* CoreGraphics.framework */; };
@@ -19,7 +20,6 @@
 		FB7C16F61662A588001A0685 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB7C16F41662A588001A0685 /* MainStoryboard.storyboard */; };
 		FB7C16F91662A588001A0685 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7C16F81662A588001A0685 /* ViewController.m */; };
 		FB7C17001662A5B6001A0685 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB7C16FF1662A5B6001A0685 /* Security.framework */; };
-		FB7C17081662A992001A0685 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = FB7C17071662A992001A0685 /* Connection.m */; };
 		FB7C170A1662ACBC001A0685 /* www.example.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = FB7C17091662ACBC001A0685 /* www.example.com.cer */; };
 		FB7C170E1662B486001A0685 /* www.google.com.cer in Resources */ = {isa = PBXBuildFile; fileRef = FB7C170D1662B486001A0685 /* www.google.com.cer */; };
 /* End PBXBuildFile section */
@@ -46,6 +46,8 @@
 		FB7C17071662A992001A0685 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		FB7C17091662ACBC001A0685 /* www.example.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = www.example.com.cer; sourceTree = "<group>"; };
 		FB7C170D1662B486001A0685 /* www.google.com.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = www.google.com.cer; sourceTree = "<group>"; };
+		FBFDDF0F1CA86CB600ADA7D4 /* SelfCert-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SelfCert-Bridging-Header.h"; sourceTree = "<group>"; };
+		FBFDDF101CA86CB600ADA7D4 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Connection.swift; path = SelfCert/Connection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		FB7C16CD1662A588001A0685 = {
 			isa = PBXGroup;
 			children = (
+				FBFDDF101CA86CB600ADA7D4 /* Connection.swift */,
 				FB7C16FF1662A5B6001A0685 /* Security.framework */,
 				FB7C16E21662A588001A0685 /* SelfCert */,
 				FB7C16DB1662A588001A0685 /* Frameworks */,
@@ -102,6 +105,7 @@
 				FB7C16F71662A588001A0685 /* ViewController.h */,
 				FB7C16F81662A588001A0685 /* ViewController.m */,
 				FB7C16E31662A588001A0685 /* Supporting Files */,
+				FBFDDF0F1CA86CB600ADA7D4 /* SelfCert-Bridging-Header.h */,
 			);
 			path = SelfCert;
 			sourceTree = "<group>";
@@ -148,7 +152,8 @@
 		FB7C16CF1662A588001A0685 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Rob Napier";
 			};
 			buildConfigurationList = FB7C16D21662A588001A0685 /* Build configuration list for PBXProject "SelfCert" */;
@@ -193,7 +198,7 @@
 				FB7C16E91662A588001A0685 /* main.m in Sources */,
 				FB7C16ED1662A588001A0685 /* AppDelegate.m in Sources */,
 				FB7C16F91662A588001A0685 /* ViewController.m in Sources */,
-				FB7C17081662A992001A0685 /* Connection.m in Sources */,
+				FB6692E51CA9727B00E11CCD /* Connection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +235,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -241,7 +247,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -262,7 +267,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -272,10 +276,15 @@
 		FB7C16FD1662A588001A0685 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SelfCert/SelfCert-Prefix.pch";
 				INFOPLIST_FILE = "SelfCert/SelfCert-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.robnapier.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SelfCert/SelfCert-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -283,10 +292,14 @@
 		FB7C16FE1662A588001A0685 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SelfCert/SelfCert-Prefix.pch";
 				INFOPLIST_FILE = "SelfCert/SelfCert-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.robnapier.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SelfCert/SelfCert-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -310,6 +323,7 @@
 				FB7C16FE1662A588001A0685 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

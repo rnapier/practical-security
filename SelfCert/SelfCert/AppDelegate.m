@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Security/Security.h>
-#import "Connection.h"
+#import "SelfCert-Swift.h"
 
 @interface AppDelegate ()
 @property (nonatomic, readwrite, strong) Connection *connection;
