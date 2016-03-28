@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FPAppDelegate.h"
+#import "FileProtection-Swift.h"
 
 int main(int argc, char *argv[])
 {

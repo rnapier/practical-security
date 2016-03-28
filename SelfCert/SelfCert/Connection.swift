@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Connection: NSObject, NSURLSessionDelegate {
+final class Connection: NSObject, NSURLSessionDelegate {
 
     let url = NSURL(string: "https://www.google.com")!
 
