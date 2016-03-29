@@ -21,10 +21,10 @@ final class FPAppDelegate: NSObject, UIApplicationDelegate  {
          Normally it would be a good idea to call upgradeFilesInDirectory(_:error:) here, but
          we're deleting everything in the documents directory.
          */
-        try! cleanDocuments()
+        try! DocumentsDirectory.clean()
 
         /* Create a protected file */
-        createProtectedFileWithOptions(.DataWritingFileProtectionComplete, name: "complete", shouldSucceed: true)
+        ProtectedFile.createWithOptions(.DataWritingFileProtectionComplete, name: "complete", shouldSucceed: true)
 
         print("Lock device now.")
 
@@ -54,13 +54,13 @@ final class FPAppDelegate: NSObject, UIApplicationDelegate  {
             print("Reading after encryption")
 
             /* Demonstrate failure when reading a protected file while we're locked */
-            readFileForName("complete", shouldSucceed: false)
+            File.readForName("complete", shouldSucceed: false)
 
             /* Demonstrate failure trying to create a protected file while we're locked */
-            createProtectedFileWithOptions(.DataWritingFileProtectionComplete, name: "complete-after-encryption", shouldSucceed: false)
+            ProtectedFile.createWithOptions(.DataWritingFileProtectionComplete, name: "complete-after-encryption", shouldSucceed: false)
 
             /* Demonstrate creating a protected file while locked using "...UnlessOpen" */
-            createProtectedFileWithOptions(.DataWritingFileProtectionCompleteUnlessOpen, name: "complete-unless-open", shouldSucceed: true)
+            ProtectedFile.createWithOptions(.DataWritingFileProtectionCompleteUnlessOpen, name: "complete-unless-open", shouldSucceed: true)
 
             print("Unlock device now")
 
@@ -74,87 +74,84 @@ final class FPAppDelegate: NSObject, UIApplicationDelegate  {
      */
     func applicationProtectedDataDidBecomeAvailable(application: UIApplication) {
         print("Upgrading files")
-        logResult( { try upgradeFilesInDirectory(DocumentsDirectory()) }, expectedResult: true)
+        Result.log( { try NSFileManager.defaultManager().upgradeFilesInDirectory(DocumentsDirectory.path) }, expectedResult: true)
         print("DONE")
     }
-}
 
-/*
- Creating a protected file
- */
-func createProtectedFileWithOptions(options: NSDataWritingOptions, name: String, shouldSucceed: Bool) {
-    let data = "This is some protected data".dataUsingEncoding(NSUTF8StringEncoding)!
-    print("Creating '\(name). Should\(shouldSucceed ? "": " not") succeed.")
-    logResult({ try data.writeToFile(PathForName(name), options: options) }, expectedResult: shouldSucceed)
-}
-
-/**
- Upgrade all the files in the directory to NSFileProtectionComplete
- Keep going, even if some fail.
- Returns whether any failed, and provides the last error encountered
- */
-func upgradeFilesInDirectory(dir: String) throws {
-    let desiredProtection = NSFileProtectionComplete
-
-    let fm = NSFileManager.defaultManager()
-    let url = NSURL(fileURLWithPath: dir)
-
-    guard let dirEnum = fm.enumeratorAtURL(url, includingPropertiesForKeys: [NSFileProtectionKey], options: [], errorHandler: nil) else {
-        throw NSError(domain: NSCocoaErrorDomain, code: NSFileNoSuchFileError, userInfo: [NSURLErrorFailingURLErrorKey: url])
-    }
-
-    var lastError: ErrorType? = nil
-    var resourceValue: AnyObject? = nil
-
-    while let element = dirEnum.nextObject() as? NSURL {
-        do {
-            try element.getResourceValue(&resourceValue, forKey: NSFileProtectionKey)
-            let currentProtection = resourceValue as? String ?? ""
-            if currentProtection != desiredProtection {
-                try element.setResourceValue(desiredProtection, forKey: NSFileProtectionKey)
-            }
-        } catch {
-            lastError = error
+    private struct ProtectedFile {
+        static func createWithOptions(options: NSDataWritingOptions, name: String, shouldSucceed: Bool) {
+            let data = "This is some protected data".dataUsingEncoding(NSUTF8StringEncoding)!
+            print("Creating '\(name). Should\(shouldSucceed ? "": " not") succeed.")
+            Result.log({ try data.writeToFile(DocumentsDirectory.pathForName(name), options: options) }, expectedResult: shouldSucceed)
         }
     }
 
-    if let lastError = lastError {
-        throw lastError
+    private struct File {
+        static func readForName(name: String, shouldSucceed: Bool) {
+            print("Reading '\(name)'. Should\(shouldSucceed ? "" : " not") succeed.")
+            Result.log({ let _ = try NSData(contentsOfFile: DocumentsDirectory.pathForName(name), options: []) }, expectedResult: shouldSucceed)
+        }
+    }
+
+    private struct DocumentsDirectory {
+        static let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+        static func pathForName(name: String) -> String {
+            return (DocumentsDirectory.path as NSString).stringByAppendingPathComponent(name)
+        }
+        static func clean() throws {
+            let fm = NSFileManager.defaultManager()
+            let dirEnum = fm.enumeratorAtPath(DocumentsDirectory.path)!
+            while let filename = dirEnum.nextObject() as? String {
+                print("Removing \(filename)")
+                try fm.removeItemAtPath(pathForName(filename))
+            }
+        }
+    }
+
+    private struct Result {
+        static func log(f: () throws -> Void, expectedResult expected: Bool) {
+            if let _ = try? f() {
+                print("Succeed \(expected ? "as expected." : "AND THIS WAS NOT EXPECTED.")")
+            } else {
+                print("Failed \(expected ? "AND THIS WAS NOT EXPECTED" : "as expected.")")
+            }
+        }
     }
 }
 
-/**********************************************************************/
-/*
- Helper methods. Things below here have fairly obvious implementations.
- */
+/// Reusable code
+extension NSFileManager {
+    /**
+     Upgrade all the files in the directory to NSFileProtectionComplete
+     Keep going, even if some fail.
+     Returns whether any failed, and provides the last error encountered
+     */
+    func upgradeFilesInDirectory(dir: String) throws {
+        let desiredProtection = NSFileProtectionComplete
 
-private func cleanDocuments() throws {
-    let fm = NSFileManager.defaultManager()
-    let dirEnum = fm.enumeratorAtPath(DocumentsDirectory())!
-    while let filename = dirEnum.nextObject() as? String {
-        print("Removing \(filename)")
-        try fm.removeItemAtPath(PathForName(filename))
+        let url = NSURL(fileURLWithPath: dir)
+
+        guard let dirEnum = enumeratorAtURL(url, includingPropertiesForKeys: [NSFileProtectionKey], options: [], errorHandler: nil) else {
+            throw NSError(domain: NSCocoaErrorDomain, code: NSFileNoSuchFileError, userInfo: [NSURLErrorFailingURLErrorKey: url])
+        }
+
+        var lastError: ErrorType? = nil
+        var resourceValue: AnyObject? = nil
+
+        while let element = dirEnum.nextObject() as? NSURL {
+            do {
+                try element.getResourceValue(&resourceValue, forKey: NSFileProtectionKey)
+                let currentProtection = resourceValue as? String ?? ""
+                if currentProtection != desiredProtection {
+                    try element.setResourceValue(desiredProtection, forKey: NSFileProtectionKey)
+                }
+            } catch {
+                lastError = error
+            }
+        }
+        
+        if let lastError = lastError {
+            throw lastError
+        }
     }
-}
-
-func logResult(f: () throws -> Void, expectedResult expected: Bool) {
-    if let _ = try? f() {
-        print("Succeed \(expected ? "as expected." : "AND THIS WAS NOT EXPECTED.")")
-    } else {
-        print("Failed \(expected ? "AND THIS WAS NOT EXPECTED" : "as expected.")")
-    }
-}
-
-func readFileForName(name: String, shouldSucceed: Bool) {
-    print("Reading '\(name)'. Should\(shouldSucceed ? "" : " not") succeed.")
-    logResult({ let _ = try NSData(contentsOfFile: PathForName(name), options: []) }, expectedResult: shouldSucceed)
-}
-
-
-private func DocumentsDirectory() -> String {
-    return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-}
-
-func PathForName(name: String) -> String {
-    return (DocumentsDirectory() as NSString).stringByAppendingPathComponent(name)
 }
