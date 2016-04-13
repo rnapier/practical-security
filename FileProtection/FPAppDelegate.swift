@@ -121,6 +121,11 @@ final class FPAppDelegate: NSObject, UIApplicationDelegate  {
 
 /// Reusable code
 extension NSFileManager {
+    func protectFileAtPath(path: String) throws {
+        try setAttributes([NSFileProtectionKey: NSFileProtectionComplete],
+                          ofItemAtPath: path)
+    }
+
     /**
      Upgrade all the files in the directory to NSFileProtectionComplete
      Keep going, even if some fail.
@@ -131,8 +136,14 @@ extension NSFileManager {
 
         let url = NSURL(fileURLWithPath: dir)
 
-        guard let dirEnum = enumeratorAtURL(url, includingPropertiesForKeys: [NSFileProtectionKey], options: [], errorHandler: nil) else {
-            throw NSError(domain: NSCocoaErrorDomain, code: NSFileNoSuchFileError, userInfo: [NSURLErrorFailingURLErrorKey: url])
+        guard let dirEnum =
+            enumeratorAtURL(url,
+                            includingPropertiesForKeys: [NSFileProtectionKey],
+                            options: [],
+                            errorHandler: nil) else {
+                                throw NSError(domain: NSCocoaErrorDomain,
+                                              code: NSFileNoSuchFileError,
+                                              userInfo: [NSURLErrorFailingURLErrorKey: url])
         }
 
         var lastError: ErrorType? = nil
@@ -140,16 +151,18 @@ extension NSFileManager {
 
         while let element = dirEnum.nextObject() as? NSURL {
             do {
-                try element.getResourceValue(&resourceValue, forKey: NSFileProtectionKey)
+                try element.getResourceValue(&resourceValue,
+                                             forKey: NSFileProtectionKey)
                 let currentProtection = resourceValue as? String ?? ""
                 if currentProtection != desiredProtection {
-                    try element.setResourceValue(desiredProtection, forKey: NSFileProtectionKey)
+                    try element.setResourceValue(desiredProtection,
+                                                 forKey: NSFileProtectionKey)
                 }
             } catch {
                 lastError = error
             }
         }
-        
+
         if let lastError = lastError {
             throw lastError
         }

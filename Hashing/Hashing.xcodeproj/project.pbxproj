@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FBCB99431CBAA84100F91DB1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCB99421CBAA84100F91DB1 /* main.swift */; };
 		FBE77D2616EEA0B00026B271 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE77D2516EEA0B00026B271 /* UIKit.framework */; };
 		FBE77D2816EEA0B00026B271 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE77D2716EEA0B00026B271 /* Foundation.framework */; };
 		FBE77D2A16EEA0B00026B271 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE77D2916EEA0B00026B271 /* CoreGraphics.framework */; };
@@ -21,7 +22,23 @@
 		FBE77D4916EEA2240026B271 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE77D4816EEA2240026B271 /* Security.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FBCB993E1CBAA84100F91DB1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		FBCB99401CBAA84100F91DB1 /* hash */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = hash; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBCB99421CBAA84100F91DB1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		FBCB99481CBAA88700F91DB1 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		FBCB99491CBAA8AE00F91DB1 /* hash-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hash-Bridging-Header.h"; sourceTree = "<group>"; };
 		FBE77D2216EEA0B00026B271 /* Hashing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hashing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBE77D2516EEA0B00026B271 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FBE77D2716EEA0B00026B271 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,6 +59,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FBCB993D1CBAA84100F91DB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBE77D1F16EEA0B00026B271 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,11 +80,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FBCB99411CBAA84100F91DB1 /* hash */ = {
+			isa = PBXGroup;
+			children = (
+				FBCB99421CBAA84100F91DB1 /* main.swift */,
+				FBCB99491CBAA8AE00F91DB1 /* hash-Bridging-Header.h */,
+			);
+			path = hash;
+			sourceTree = "<group>";
+		};
 		FBE77D1916EEA0B00026B271 = {
 			isa = PBXGroup;
 			children = (
+				FBCB99481CBAA88700F91DB1 /* RNCryptor.h */,
 				FBE77D4816EEA2240026B271 /* Security.framework */,
 				FBE77D2B16EEA0B00026B271 /* Hashing */,
+				FBCB99411CBAA84100F91DB1 /* hash */,
 				FBE77D2416EEA0B00026B271 /* Frameworks */,
 				FBE77D2316EEA0B00026B271 /* Products */,
 			);
@@ -70,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				FBE77D2216EEA0B00026B271 /* Hashing.app */,
+				FBCB99401CBAA84100F91DB1 /* hash */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +150,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FBCB993F1CBAA84100F91DB1 /* hash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FBCB99461CBAA84100F91DB1 /* Build configuration list for PBXNativeTarget "hash" */;
+			buildPhases = (
+				FBCB993C1CBAA84100F91DB1 /* Sources */,
+				FBCB993D1CBAA84100F91DB1 /* Frameworks */,
+				FBCB993E1CBAA84100F91DB1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hash;
+			productName = hash;
+			productReference = FBCB99401CBAA84100F91DB1 /* hash */;
+			productType = "com.apple.product-type.tool";
+		};
 		FBE77D2116EEA0B00026B271 /* Hashing */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBE77D4516EEA0B00026B271 /* Build configuration list for PBXNativeTarget "Hashing" */;
@@ -137,8 +190,14 @@
 		FBE77D1A16EEA0B00026B271 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Rob Napier";
+				TargetAttributes = {
+					FBCB993F1CBAA84100F91DB1 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
 			};
 			buildConfigurationList = FBE77D1D16EEA0B00026B271 /* Build configuration list for PBXProject "Hashing" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -153,6 +212,7 @@
 			projectRoot = "";
 			targets = (
 				FBE77D2116EEA0B00026B271 /* Hashing */,
+				FBCB993F1CBAA84100F91DB1 /* hash */,
 			);
 		};
 /* End PBXProject section */
@@ -173,6 +233,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FBCB993C1CBAA84100F91DB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBCB99431CBAA84100F91DB1 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBE77D1E16EEA0B00026B271 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,6 +273,63 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FBCB99441CBAA84100F91DB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "hash/hash-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FBCB99451CBAA84100F91DB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "hash/hash-Bridging-Header.h";
+			};
+			name = Release;
+		};
 		FBE77D4316EEA0B00026B271 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -219,6 +344,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -230,7 +356,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -254,7 +379,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -267,6 +391,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hashing/Hashing-Prefix.pch";
 				INFOPLIST_FILE = "Hashing/Hashing-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.robnapier.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -278,6 +403,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hashing/Hashing-Prefix.pch";
 				INFOPLIST_FILE = "Hashing/Hashing-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.robnapier.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -286,6 +412,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FBCB99461CBAA84100F91DB1 /* Build configuration list for PBXNativeTarget "hash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBCB99441CBAA84100F91DB1 /* Debug */,
+				FBCB99451CBAA84100F91DB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		FBE77D1D16EEA0B00026B271 /* Build configuration list for PBXProject "Hashing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -302,6 +436,7 @@
 				FBE77D4716EEA0B00026B271 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
